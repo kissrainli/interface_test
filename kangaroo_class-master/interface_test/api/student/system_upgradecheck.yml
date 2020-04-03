@@ -1,0 +1,27 @@
+name: /student/system/upgradecheck
+request:
+    data: ''
+    headers:
+        Authorization: Bearer $token
+        User-Agent: okhttp/3.8.1
+        clientid: '3'
+        deviceId: 27fa8da7192d062c
+        studentId: ''
+        system: vivo NEX S
+        userId: ba1155b5f179ce58a655d1eaea52a849
+        ver: 1.1.0
+    method: POST
+    url: /student/system/upgradecheck
+validate:
+-   eq:
+    - status_code
+    - 200
+-   eq:
+    - headers.Content-Type
+    - application/json; charset=UTF-8
+-   eq:
+    - content.code
+    - 0
+-   eq:
+    - content.msg
+    - success

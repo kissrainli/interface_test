@@ -1,0 +1,20 @@
+config:
+    name: Test the student's side
+    base_url: ${ENV(base_url)}
+teststeps:
+-   name: /student/user/login
+    api: api/student/user_login.yml
+-   name: /student/system/upgradecheck
+    api: api/student/system_upgradecheck.yml
+-   name: /student/index/home
+    api: api/student/index_home.yml
+-   name: /student/lesson/list
+    api: api/student/lesson_list.yml
+-   name: /student/classroom/enterroom
+    api: api/student/enter_room.yml
+-   name: /student/data/switch
+    api: api/student/student_switch.yml
+-   name: /student/lesson/studentlist
+    api: api/student/lesson_student_list.yml
+-   name: /student/user/userinfo
+    api: api/student/student_info.yml

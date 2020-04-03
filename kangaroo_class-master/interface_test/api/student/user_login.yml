@@ -1,0 +1,36 @@
+name: /student/user/login
+variables:
+    stu_mobile: ${ENV(student_mobile)}
+    stu_password: ${ENV(student_password)}
+request:
+    data:
+        mobile: $stu_mobile
+        password: $stu_password
+    headers:
+        Authorization: ''
+        Content-Type: application/x-www-form-urlencoded
+        User-Agent: okhttp/3.8.1
+        clientid: '3'
+        deviceId: 27fa8da7192d062c
+        studentId: ''
+        system: vivo NEX S
+        userId: ''
+        ver: 1.1.0
+    method: POST
+    url: /student/user/login
+extract:
+    token: content.data.token
+    user_id: content.data.userId
+validate:
+-   eq:
+    - status_code
+    - 200
+-   eq:
+    - headers.Content-Type
+    - application/json; charset=UTF-8
+-   eq:
+    - content.code
+    - 0
+-   eq:
+    - content.msg
+    - success

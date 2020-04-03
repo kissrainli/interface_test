@@ -1,0 +1,28 @@
+name: /student/user/userinfo
+request:
+    data:
+        lessonId: '4140'
+        stuId: $student_id
+    headers:
+        Authorization: Bearer $token
+        Content-Type: application/x-www-form-urlencoded;charset=UTF-8
+        User-Agent: Mozilla/5.0 (Linux; Android 9; vivo NEX S Build/PKQ1.181016.001;
+            wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126
+            MQQBrowser/6.2 TBS/044813 Mobile Safari/537.36
+        X-Requested-With: com.banma.rooclass.develop
+        clientid: '1'
+    method: POST
+    url: https://api-test.100daishu.com/student/user/userinfo
+validate:
+-   eq:
+    - status_code
+    - 200
+-   eq:
+    - headers.Content-Type
+    - application/json; charset=UTF-8
+-   eq:
+    - content.code
+    - 0
+-   eq:
+    - content.msg
+    - success

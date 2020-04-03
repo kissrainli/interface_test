@@ -1,0 +1,31 @@
+name: /student/lesson/list
+request:
+    data:
+        sign: '1'
+        stuId: $student_id
+        userId: $user_id
+    headers:
+        Authorization: Bearer $token
+        Content-Type: application/x-www-form-urlencoded
+        User-Agent: okhttp/3.8.1
+        clientid: '3'
+        deviceId: 27fa8da7192d062c
+        studentId: 62722b162a21ac3b7fee84a148dec016
+        system: vivo NEX S
+        userId: $user_id
+        ver: 1.1.0
+    method: POST
+    url: https://api-test.100daishu.com/student/lesson/list
+validate:
+-   eq:
+    - status_code
+    - 200
+-   eq:
+    - headers.Content-Type
+    - application/json; charset=UTF-8
+-   eq:
+    - content.code
+    - 0
+-   eq:
+    - content.msg
+    - success

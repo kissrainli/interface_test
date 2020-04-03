@@ -1,0 +1,376 @@
+config:
+    #name: testcase description
+    #variables: {}
+    name: testcase description
+    base_url: https://api.100daishu.com
+    variables:
+        mobile: '15866705109'
+        password: '705109'
+teststeps:
+-   name: /student/user/login
+    request:
+        data:
+            mobile: $mobile
+            password: $password
+        headers:
+            Authorization: ''
+            Content-Type: application/x-www-form-urlencoded
+            User-Agent: okhttp/3.8.1
+            clientid: '3'
+            deviceId: 27fa8da7192d062c
+            studentId: ''
+            system: vivo NEX S
+            userId: ''
+            ver: 1.1.0
+        method: POST
+        url: https://api-test.100daishu.com/student/user/login
+    extract:
+        token: content.data.token
+        user_id: content.data.userId
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - success
+-   name: /student/system/upgradecheck
+    request:
+        data: ''
+        headers:
+            Authorization: Bearer $token
+            User-Agent: okhttp/3.8.1
+            clientid: '3'
+            deviceId: 27fa8da7192d062c
+            studentId: ''
+            system: vivo NEX S
+            userId: ba1155b5f179ce58a655d1eaea52a849
+            ver: 1.1.0
+        method: POST
+        url: https://api-test.100daishu.com/student/system/upgradecheck
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - success
+-   name: /student/index/home
+    request:
+        data:
+            userId: $user_id
+        headers:
+            Authorization: Bearer $token
+            Content-Type: application/x-www-form-urlencoded
+            User-Agent: okhttp/3.8.1
+            clientid: '3'
+            deviceId: 27fa8da7192d062c
+            studentId: ''
+            system: vivo NEX S
+            userId: $user_id
+            ver: 1.1.0
+        method: POST
+        url: https://api-test.100daishu.com/student/index/home
+    extract:
+        student_id: content.data.stuId   #获取student_id
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - success
+-   name: /student/lesson/list
+    request:
+        data:
+            sign: '1'
+            stuId: $student_id
+            userId: $user_id
+        headers:
+            Authorization: Bearer $token
+            Content-Type: application/x-www-form-urlencoded
+            User-Agent: okhttp/3.8.1
+            clientid: '3'
+            deviceId: 27fa8da7192d062c
+            studentId: 62722b162a21ac3b7fee84a148dec016
+            system: vivo NEX S
+            userId: $user_id
+            ver: 1.1.0
+        method: POST
+        url: https://api-test.100daishu.com/student/lesson/list
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - success
+-   name: /student/index/home
+    request:
+        data:
+            stuId: $student_id
+            userId: $user_id
+        headers:
+            Authorization: Bearer $token
+            Content-Type: application/x-www-form-urlencoded
+            User-Agent: okhttp/3.8.1
+            clientid: '3'
+            deviceId: 27fa8da7192d062c
+            studentId: $student_id
+            system: vivo NEX S
+            userId: $user_id
+            ver: 1.1.0
+        method: POST
+        url: https://api-test.100daishu.com/student/index/home
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - success
+-   name: /student/classroom/enterroom
+    request:
+        data:
+            lessonId: '4140'
+            stuId: $student_id
+        headers:
+            Authorization: Bearer $token
+            Content-Type: application/x-www-form-urlencoded
+            User-Agent: okhttp/3.8.1
+            clientid: '3'
+            deviceId: 27fa8da7192d062c
+            studentId: $student_id
+            system: vivo NEX S
+            userId: $user_id
+            ver: 1.1.0
+        method: POST
+        url: https://api-test.100daishu.com/student/classroom/enterroom
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code  #没买课
+        - 0
+    -   eq:
+        - content.msg
+        - success
+-   name: /student/data/switch
+    request:
+        headers:
+            Access-Control-Request-Headers: authorization,clientid
+            Access-Control-Request-Method: POST
+            User-Agent: Mozilla/5.0 (Linux; Android 9; vivo NEX S Build/PKQ1.181016.001;
+                wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126
+                MQQBrowser/6.2 TBS/044813 Mobile Safari/537.36
+            X-Requested-With: com.banma.rooclass.develop
+        method: OPTIONS
+        url: https://api-test.100daishu.com/student/data/switch
+    validate:
+    -   eq:
+        - status_code
+        - 204
+-   name: /student/data/switch
+    request:
+        data:
+            clientid: '3'
+        headers:
+            Authorization: ''
+            Content-Type: application/x-www-form-urlencoded;charset=UTF-8
+            User-Agent: Mozilla/5.0 (Linux; Android 9; vivo NEX S Build/PKQ1.181016.001;
+                wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126
+                MQQBrowser/6.2 TBS/044813 Mobile Safari/537.36
+            X-Requested-With: com.banma.rooclass.develop
+            clientid: '3'
+        method: POST
+        url: https://api-test.100daishu.com/student/data/switch
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - 成功
+-   name: /student/user/userinfo
+    request:
+        headers:
+            Access-Control-Request-Headers: authorization,clientid
+            Access-Control-Request-Method: POST
+            User-Agent: Mozilla/5.0 (Linux; Android 9; vivo NEX S Build/PKQ1.181016.001;
+                wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126
+                MQQBrowser/6.2 TBS/044813 Mobile Safari/537.36
+            X-Requested-With: com.banma.rooclass.develop
+        method: OPTIONS
+        url: https://api-test.100daishu.com/student/user/userinfo
+    validate:
+    -   eq:
+        - status_code
+        - 204
+-   name: /student/lesson/studentlist
+    request:
+        headers:
+            Access-Control-Request-Headers: authorization,clientid
+            Access-Control-Request-Method: POST
+            User-Agent: Mozilla/5.0 (Linux; Android 9; vivo NEX S Build/PKQ1.181016.001;
+                wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126
+                MQQBrowser/6.2 TBS/044813 Mobile Safari/537.36
+            X-Requested-With: com.banma.rooclass.develop
+        method: OPTIONS
+        url: https://api-test.100daishu.com/student/lesson/studentlist
+    validate:
+    -   eq:
+        - status_code
+        - 204
+-   name: /student/data/switch
+    request:
+        data:
+            clientid: '3'
+        headers:
+            Authorization: Bearer $token
+            Content-Type: application/x-www-form-urlencoded;charset=UTF-8
+            User-Agent: Mozilla/5.0 (Linux; Android 9; vivo NEX S Build/PKQ1.181016.001;
+                wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126
+                MQQBrowser/6.2 TBS/044813 Mobile Safari/537.36
+            X-Requested-With: com.banma.rooclass.develop
+            clientid: '3'
+        method: POST
+        url: https://api-test.100daishu.com/student/data/switch
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - 成功
+-   name: /student/lesson/studentlist
+    request:
+        data:
+            lessonId: '4140'
+        headers:
+            Authorization: Bearer $token
+            Content-Type: application/x-www-form-urlencoded;charset=UTF-8
+            User-Agent: Mozilla/5.0 (Linux; Android 9; vivo NEX S Build/PKQ1.181016.001;
+                wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126
+                MQQBrowser/6.2 TBS/044813 Mobile Safari/537.36
+            X-Requested-With: com.banma.rooclass.develop
+            clientid: '1'
+        method: POST
+        url: https://api-test.100daishu.com/student/lesson/studentlist
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - success
+-   name: /student/user/userinfo
+    request:
+        data:
+            lessonId: '4140'
+            stuId: $student_id
+        headers:
+            Authorization: Bearer $token
+            Content-Type: application/x-www-form-urlencoded;charset=UTF-8
+            User-Agent: Mozilla/5.0 (Linux; Android 9; vivo NEX S Build/PKQ1.181016.001;
+                wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126
+                MQQBrowser/6.2 TBS/044813 Mobile Safari/537.36
+            X-Requested-With: com.banma.rooclass.develop
+            clientid: '1'
+        method: POST
+        url: https://api-test.100daishu.com/student/user/userinfo
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - success
+-   name: /student/index/home
+    request:
+        data:
+            stuId: $student_id
+            userId: $user_id
+        headers:
+            Authorization: Bearer $token
+            Content-Type: application/x-www-form-urlencoded
+            User-Agent: okhttp/3.8.1
+            X-Tingyun-Id: uyq_oaoCdhI;c=2;r=986194004;u=8124bc498cbc1ea4012c40f4ca50368925b8a45fca8d11d2948a8e4c1cd70d247d27f03e3ae6e8fcf34c507d7e26ca7a::B13ED1E4E7A676FF
+            clientid: '3'
+            deviceId: 27fa8da7192d062c
+            studentId: $student_id
+            system: vivo NEX S
+            userId: $user_id
+            ver: 1.1.0
+        method: POST
+        url: https://api-test.100daishu.com/student/index/home
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - success

@@ -1,0 +1,6 @@
+config:
+    name: Test the shanxi's API
+    base_url: ${ENV(shanxi_url)}
+teststeps:
+-   name: /uc/v1/login/local
+    api: api/shanxi/shanxi_login.yml

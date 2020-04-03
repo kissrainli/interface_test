@@ -1,0 +1,14 @@
+config:
+    name: Test the shanxi's API
+    base_url: ${ENV(shanxi_url)}
+testcases:
+    login:
+        testcase: testcases/shanxi/shanxi_login.yml
+    user_center:
+        testcase: testcases/shanxi/shanxi_user_center.yml
+    user_homepage:
+        testcase: testcases/shanxi/shanxi_homepage.yml
+    friend_ship:
+        testcase: testcases/shanxi/shanxi_friend_ship.yml
+    activity_start:
+        testcase: testcases/shanxi/activitystart.yml

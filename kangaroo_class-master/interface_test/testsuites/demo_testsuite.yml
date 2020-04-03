@@ -1,0 +1,12 @@
+config:
+    name: "demo testsuite"
+    variables:
+        device_sn: "XYZ"
+    base_url: "http://127.0.0.1:5000"
+
+testcases:
+    login:
+        testcase: interface_test/testcases/wx_login.yml
+        parameters:
+            mobile: ["13552616475", ]
+        device_sn: $device_sn

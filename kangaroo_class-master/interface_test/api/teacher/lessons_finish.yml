@@ -1,0 +1,30 @@
+name: /teacher/lessons/finish
+request:
+    data:
+        claId: $claId
+        lessonId: $lessonId
+    headers:
+        Authorization: Bearer $token
+        Content-Type: application/x-www-form-urlencoded
+        User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36
+            (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
+        deviceId: 926735da-3134-1652-12ad-6e01a0dbd910
+        studentId: '81'
+        system: Mac
+        userId: anonymous
+        ver: 1.1.0.0b8
+    method: POST
+    url: https://api-test.100daishu.com/teacher/lessons/finish
+validate:
+-   eq:
+    - status_code
+    - 200
+-   eq:
+    - headers.Content-Type
+    - application/json; charset=UTF-8
+-   eq:
+    - content.code
+    - 0
+-   eq:
+    - content.msg
+    - 成功

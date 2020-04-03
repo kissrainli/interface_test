@@ -1,0 +1,706 @@
+config:
+    name: testcase description
+    variables: {}
+teststeps:
+-   name: /hall/v1/config/get
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+            X-QP-AppId: '13001'
+            X-QP-AppVersion: 1.0.49
+            X-QP-ClientType: '2'
+            X-QP-Gid: '10592879'
+            X-QP-Nonce: c200c3f8-8c6f-44ec-c4a8-0fb68ddf0284
+            X-QP-OS: android
+            X-QP-OSVersion: unknow
+            X-QP-ResVersion: 1.10.15
+            X-QP-Signature: a2c1fd8b8fc14e4702657b374c2a1621
+            X-QP-Timestamp: '1585637034'
+            X-QP-Token: 236aec9f-4319-52af-a413-bf8641a0f31a
+            X-QP-UserId: '13615291'
+        method: GET
+        params:
+            channel: ''
+            clientVersion: 1.10.15
+            gameId: '13001'
+            gid: '10592879'
+            sex: '0'
+            systemVersion: a0
+            userId: '13615291'
+            xsdkVersion: 2.3.3
+        url: https://apitest.xianlaigame.com/hall/v1/config/get
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - text/plain; charset=utf-8
+-   name: /activity/v1/takePart
+    request:
+        headers:
+            Content-Type: application/json
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+            X-QP-AppId: '13001'
+            X-QP-AppVersion: 1.0.49
+            X-QP-ClientType: '2'
+            X-QP-Gid: '10592879'
+            X-QP-Nonce: 4ef9d3dc-e391-446b-c4e9-3bf85523417d
+            X-QP-OS: android
+            X-QP-OSVersion: unknow
+            X-QP-ResVersion: 1.10.15
+            X-QP-Signature: 7593d694c9a2c3edb226065616eacdc0
+            X-QP-Timestamp: '1585637035'
+            X-QP-Token: 236aec9f-4319-52af-a413-bf8641a0f31a
+            X-QP-UserId: '13615291'
+        json:
+            gid: 10592879
+            itemType: 0
+            serverId: 13001
+        method: POST
+        url: https://apilocaltest.xianlaigame.com/activity/v1/takePart
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - text/plain; charset=utf-8
+-   name: /uc/v1/third/bind/get
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+            X-QP-AppId: '13001'
+            X-QP-Gid: '10592879'
+            X-QP-Nonce: '1585637036'
+            X-QP-Signature: 85E3BF898B535CBE227CA1C3F915A3A6
+            X-QP-Timestamp: '1585637036'
+            X-QP-Token: 236aec9f-4319-52af-a413-bf8641a0f31a
+        method: GET
+        params:
+            gid: '10592879'
+        url: https://apilocaltest.xianlaigame.com/uc/v1/third/bind/get
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - text/plain; charset=utf-8
+-   name: /xlhy-activity-external/baseshare/getconfig
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+        method: GET
+        params:
+            deviceType: '1'
+            funIds: WduBD2yZ,a8t8fQ1s,zNcoKjVV,qiandao,gaGGwDFF,fnDtjqbZ,nufOTZ5y
+            gameId: '13001'
+        url: http://120.76.194.200:7480/xlhy-activity-external/baseshare/getconfig
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - SUCCESS
+-   name: /activity/new/api/v1/commonmethod/info
+    request:
+        headers:
+            Content-Type: application/json
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+            X-QP-AppId: '13001'
+            X-QP-AppVersion: 1.0.49
+            X-QP-ClientType: '2'
+            X-QP-Gid: '10592879'
+            X-QP-Nonce: c7313bee-8027-4039-c060-ab116d101c99
+            X-QP-OS: android
+            X-QP-OSVersion: unknow
+            X-QP-ResVersion: 1.10.15
+            X-QP-Signature: dd342f0e2c3abebb2d929240a879c44a
+            X-QP-Timestamp: '1585637036'
+            X-QP-Token: 236aec9f-4319-52af-a413-bf8641a0f31a
+            X-QP-UserId: '13615291'
+        json:
+            ActiveID: 1300155
+        method: POST
+        params:
+            ActiveID: '1300155'
+        url: https://apitest.xianlaigame.com/activity/new/api/v1/commonmethod/info
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - text/plain; charset=utf-8
+-   name: /xlhy-activity-external/wechatinvitation/queryInviter
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+        method: GET
+        params:
+            activityName: GuildRoomInvite
+            gameId: '13001'
+            unionId: '666'
+        url: http://120.76.194.200:7480/xlhy-activity-external/wechatinvitation/queryInviter
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+-   name: /xlhy-activity-external/wechatinvitation/queryInviter
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+        method: GET
+        params:
+            activityName: GuildB2C
+            gameId: '13001'
+            unionId: '666'
+        url: http://120.76.194.200:7480/xlhy-activity-external/wechatinvitation/queryInviter
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+-   name: /xlhy-activity-external/wechatinvitation/queryInviter
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+        method: GET
+        params:
+            activityName: guild_invite
+            gameId: '13001'
+            unionId: '666'
+        url: http://120.76.194.200:7480/xlhy-activity-external/wechatinvitation/queryInviter
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+-   name: /xlhy-activity-external/wechatinvitation/queryInviter
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+        method: GET
+        params:
+            activityName: c2c
+            gameId: '13001'
+            unionId: '666'
+        url: http://120.76.194.200:7480/xlhy-activity-external/wechatinvitation/queryInviter
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+-   name: /activity/new/api/v1/openlist
+    request:
+        headers:
+            Content-Type: application/json
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+            X-QP-AppId: '13001'
+            X-QP-AppVersion: 1.0.49
+            X-QP-ClientType: '2'
+            X-QP-Gid: '10592879'
+            X-QP-Nonce: 7f46ca99-4363-43a8-c3df-4654a629ca10
+            X-QP-OS: android
+            X-QP-OSVersion: unknow
+            X-QP-ResVersion: 1.10.15
+            X-QP-Signature: bb39ef98b388f56207b4e70c72891284
+            X-QP-Timestamp: '1585637036'
+            X-QP-Token: 236aec9f-4319-52af-a413-bf8641a0f31a
+            X-QP-UserId: '13615291'
+        json: {}
+        method: POST
+        url: https://apitest.xianlaigame.com/activity/new/api/v1/openlist
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - text/plain; charset=utf-8
+-   name: /xlhy-activity-external/hallMarquee/getContent
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+            X-QP-AppId: '13001'
+            X-QP-AppVersion: 1.0.49
+            X-QP-ClientType: '2'
+            X-QP-Gid: '10592879'
+            X-QP-Nonce: c3114ce3-12b3-4b96-cbfe-dc4ecc2ca71c
+            X-QP-OS: android
+            X-QP-OSVersion: unknow
+            X-QP-ResVersion: 1.10.15
+            X-QP-Signature: 83e4f74ea182823066f910b979fe6bac
+            X-QP-Timestamp: '1585637036'
+            X-QP-Token: 236aec9f-4319-52af-a413-bf8641a0f31a
+            X-QP-UserId: '13615291'
+        method: GET
+        params:
+            gameId: '13001'
+            serverCode: shanxi2_db
+            userId: '13615291'
+            userIp: nil
+        url: http://120.76.194.200:7180/xlhy-activity-external/hallMarquee/getContent
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=UTF-8
+    -   eq:
+        - content.hallMarqueeContent
+        - 文明上网，远离赌博。
+-   name: /xlhy-activity-external/activityConf/getConf
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+        method: GET
+        params:
+            access_token: 236aec9f-4319-52af-a413-bf8641a0f31a
+            gameId: '13001'
+            openID: '666'
+            unionID: '666'
+            userId: '13615291'
+        url: http://120.76.194.200:7480/xlhy-activity-external/activityConf/getConf
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - SUCCESS
+-   name: /xlhy-activity-external/nameConfirm/queryStatus
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+        method: GET
+        params:
+            gameId: '13001'
+            sign: 0dcdef3ea12cc54de8a11890f8810a77
+            userId: '13615291'
+        url: http://120.76.194.200:7480/xlhy-activity-external/nameConfirm/queryStatus
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - SUCCESS
+-   name: /xlhy-activity-external/commonsharing/getconfigapp
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+        method: GET
+        params:
+            deviceType: '0'
+            gameId: '13001'
+            packageName: com.ixianlai.shanmahjong
+        url: http://120.76.194.200:7480/xlhy-activity-external/commonsharing/getconfigapp
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=utf-8
+    -   eq:
+        - content.msg
+        - success
+    -   eq:
+        - content.status
+        - '1'
+-   name: /xlhy-activity-external/commonsharing/getmoreset
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+        method: GET
+        params:
+            gameId: '13001'
+        url: http://120.76.194.200:7480/xlhy-activity-external/commonsharing/getmoreset
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=utf-8
+    -   eq:
+        - content.msg
+        - success
+    -   eq:
+        - content.status
+        - '1'
+-   name: /activity/new/api/v1/commonmethod/info
+    request:
+        headers:
+            Content-Type: application/json
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+            X-QP-AppId: '13001'
+            X-QP-AppVersion: 1.0.49
+            X-QP-ClientType: '2'
+            X-QP-Gid: '10592879'
+            X-QP-Nonce: f095e0db-c33d-4144-c12a-1316ca13d3cd
+            X-QP-OS: android
+            X-QP-OSVersion: unknow
+            X-QP-ResVersion: 1.10.15
+            X-QP-Signature: 35bb7cbe8c75b25996b891a400659703
+            X-QP-Timestamp: '1585637037'
+            X-QP-Token: 236aec9f-4319-52af-a413-bf8641a0f31a
+            X-QP-UserId: '13615291'
+        json:
+            userId: 13615291
+        method: POST
+        params:
+            ActiveID: '1300166'
+        url: https://apitest.xianlaigame.com/activity/new/api/v1/commonmethod/info
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - text/plain; charset=utf-8
+-   name: /xlhy-activity-external/noticeguide/get
+    request:
+        headers:
+            Content-Type: application/json
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+        json:
+            appId: 13001
+            city: ''
+            clientIp: 222.129.17.238
+            clientVersion: 1.0.49
+            gid: 10592879
+            packageName: com.ixianlai.shanmahjong
+            province: ''
+            systemVersion: a6.0
+            userId: 13615291
+            userRoleType: 1
+            userSex: 0
+            xsdkVersion: 2.3.3
+        method: POST
+        url: http://120.76.194.200:7480/xlhy-activity-external/noticeguide/get
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=utf-8
+    -   eq:
+        - content.code
+        - 0
+-   name: /xlhy-activity-external/wechatinvitation/queryInviter
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+        method: GET
+        params:
+            activityName: c2c
+            gameId: '13001'
+            unionId: '666'
+        url: http://120.76.194.200:7480/xlhy-activity-external/wechatinvitation/queryInviter
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+-   name: /xlhy-activity-external/versionupgrade/checkVersion
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+        method: GET
+        params:
+            currentVersion: 1.0.49
+            deviceType: '0'
+            gameId: '13001'
+            sign: 929ffb587f2fbc6edd6e08f727e8a160
+            unionId: '666'
+            userId: '13615291'
+        url: http://120.76.194.200:7480/xlhy-activity-external/versionupgrade/checkVersion
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=utf-8
+    -   eq:
+        - content.msg
+        - success
+    -   eq:
+        - content.status
+        - '1'
+-   name: /xlhy-activity-external/freered/check
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+        method: GET
+        params:
+            gameId: '13001'
+            sign: e19b25ddb8907d7dbecd736272b80552
+            unionId: '666'
+            userId: '13615291'
+        url: http://120.76.194.200:7480/xlhy-activity-external/freered/check
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=utf-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - SUCCESS
+-   name: /xlhy-activity-external/freered/myRedBill
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+        method: GET
+        params:
+            gameId: '13001'
+            sign: e19b25ddb8907d7dbecd736272b80552
+            unionId: '666'
+            userId: '13615291'
+        url: http://120.76.194.200:7480/xlhy-activity-external/freered/myRedBill
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=utf-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - SUCCESS
+-   name: /xlhy-activity-external/consultred/check
+    request:
+        headers:
+            Content-Type: application/json
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+        method: GET
+        params:
+            gameId: '13001'
+            userId: '13615291'
+        url: http://120.76.194.200:7480/xlhy-activity-external/consultred/check
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=utf-8
+    -   eq:
+        - content.msg
+        - 活动已关闭
+    -   eq:
+        - content.status
+        - '-404'
+-   name: /xlhy-activity-external/dayopenred/check
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+        method: GET
+        params:
+            from: '0'
+            gameId: '13001'
+            sign: c1341045eef4f99d734143fa044cdb7d
+            unionId: '666'
+        url: http://120.76.194.200:7480/xlhy-activity-external/dayopenred/check
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=utf-8
+    -   eq:
+        - content.code
+        - 1002
+    -   eq:
+        - content.msg
+        - activity off
+    -   eq:
+        - content.data
+        - ''
+-   name: /activity/api/v1/info/
+    request:
+        headers:
+            Content-Type: application/json
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+            X-QP-AppId: '13001'
+            X-QP-AppVersion: 1.0.49
+            X-QP-ClientType: '2'
+            X-QP-Gid: '10592879'
+            X-QP-Nonce: e964fd26-6785-41e5-c1bc-00831c9b18af
+            X-QP-OS: android
+            X-QP-OSVersion: unknow
+            X-QP-ResVersion: 1.10.15
+            X-QP-Signature: 2c5b6873140ac5bc49c9baad2b48c85e
+            X-QP-Timestamp: '1585637038'
+            X-QP-Token: 236aec9f-4319-52af-a413-bf8641a0f31a
+            X-QP-UserId: '13615291'
+        json:
+            app_id: 13001
+            nonce: 1585637038
+            secret_id: ''
+            sign: 16ab0e0563f39ee0dce32cfedd29418e
+            timestamp: 1585637038
+            user: 13615291
+        method: POST
+        url: https://apitest.xianlaigame.com/activity/api/v1/info/
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - text/plain; charset=utf-8
+-   name: /activity/new/api/v1/asynmethod/info
+    request:
+        headers:
+            Content-Type: application/json
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+            X-QP-AppId: '13001'
+            X-QP-AppVersion: 1.0.49
+            X-QP-ClientType: '2'
+            X-QP-Gid: '10592879'
+            X-QP-Nonce: a66d6e0a-a266-4fcd-cfc1-0f787b6deb52
+            X-QP-OS: android
+            X-QP-OSVersion: unknow
+            X-QP-ResVersion: 1.10.15
+            X-QP-Signature: 809ace7b26465adcee9ed54613ca3866
+            X-QP-Timestamp: '1585637038'
+            X-QP-Token: 236aec9f-4319-52af-a413-bf8641a0f31a
+            X-QP-UserId: '13615291'
+        json:
+            app_id: 13001
+            equipment_type: 2
+            gid: 10592879
+            scene_id: 1
+            userId: 13615291
+            xsdk_version: 2.3.3
+        method: POST
+        params:
+            ActiveID: '1300162'
+        url: https://apitest.xianlaigame.com/activity/new/api/v1/asynmethod/info
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - text/plain; charset=utf-8
+-   name: /activity/new/api/v1/commonmethod/progress
+    request:
+        headers:
+            Content-Type: application/json
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+            X-QP-AppId: '13001'
+            X-QP-AppVersion: 1.0.49
+            X-QP-ClientType: '2'
+            X-QP-Gid: '10592879'
+            X-QP-Nonce: 5cc617a5-bae0-4e42-cefd-3b7ff70a9b08
+            X-QP-OS: android
+            X-QP-OSVersion: unknow
+            X-QP-ResVersion: 1.10.15
+            X-QP-Signature: 925e1c9995b983983f239d9a5922ccff
+            X-QP-Timestamp: '1585637037'
+            X-QP-Token: 236aec9f-4319-52af-a413-bf8641a0f31a
+            X-QP-UserId: '13615291'
+        json: {}
+        method: POST
+        params:
+            ActiveID: '1300184'
+        url: https://apitest.xianlaigame.com/activity/new/api/v1/commonmethod/progress
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - text/plain; charset=utf-8
+-   name: /activity/new/api/v1/commonmethod/duobao_award_records
+    request:
+        headers:
+            Content-Type: application/json
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+            X-QP-AppId: '13001'
+            X-QP-AppVersion: 1.0.49
+            X-QP-ClientType: '2'
+            X-QP-Gid: '10592879'
+            X-QP-Nonce: 5996e62c-6833-4e76-ce5e-04cf0ab852a9
+            X-QP-OS: android
+            X-QP-OSVersion: unknow
+            X-QP-ResVersion: 1.10.15
+            X-QP-Signature: 608152064069999c46e66a0147bf871e
+            X-QP-Timestamp: '1585637038'
+            X-QP-Token: 236aec9f-4319-52af-a413-bf8641a0f31a
+            X-QP-UserId: '13615291'
+        json:
+            ActiveID: 1300152
+            gid: 10592879
+        method: POST
+        params:
+            ActiveID: '1300152'
+        url: https://apitest.xianlaigame.com/activity/new/api/v1/commonmethod/duobao_award_records
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - text/plain; charset=utf-8

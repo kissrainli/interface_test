@@ -1,0 +1,138 @@
+config:
+    name: testcase description
+    variables: {}
+teststeps:
+-   name: /hall/v1/config/get
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+            X-QP-AppId: '13001'
+            X-QP-AppVersion: 1.0.49
+            X-QP-ClientType: '2'
+            X-QP-Gid: '10592879'
+            X-QP-Nonce: c200c3f8-8c6f-44ec-c4a8-0fb68ddf0284
+            X-QP-OS: android
+            X-QP-OSVersion: unknow
+            X-QP-ResVersion: 1.10.15
+            X-QP-Signature: a2c1fd8b8fc14e4702657b374c2a1621
+            X-QP-Timestamp: '1585637034'
+            X-QP-Token: 236aec9f-4319-52af-a413-bf8641a0f31a
+            X-QP-UserId: '13615291'
+        method: GET
+        params:
+            channel: ''
+            clientVersion: 1.10.15
+            gameId: '13001'
+            gid: '10592879'
+            sex: '0'
+            systemVersion: a0
+            userId: '13615291'
+            xsdkVersion: 2.3.3
+        url: https://apitest.xianlaigame.com/hall/v1/config/get
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - text/plain; charset=utf-8
+-   name: /hall/v1/user/state/
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+        method: GET
+        params:
+            gid: '10592879'
+        url: http://120.79.123.213:11086/hall/v1/user/state/
+    validate:
+    -   eq:
+        - status_code
+        - 200
+-   name: /hall/v1/config/block/module
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+            X-QP-AppId: '13001'
+            X-QP-AppVersion: 1.0.49
+            X-QP-ClientType: '2'
+            X-QP-Gid: '10592879'
+            X-QP-Nonce: e2b9ab24-f7e6-41d1-c14e-4f971122bbfc
+            X-QP-OS: android
+            X-QP-OSVersion: unknow
+            X-QP-ResVersion: 1.10.15
+            X-QP-Signature: 46db736a65fff696ee5f9ce66b8f928d
+            X-QP-Timestamp: '1585637036'
+            X-QP-Token: 236aec9f-4319-52af-a413-bf8641a0f31a
+            X-QP-UserId: '13615291'
+        method: GET
+        params:
+            gameId: '13001'
+            userId: '13615291'
+        url: https://apitest.xianlaigame.com/hall/v1/config/block/module
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - text/plain; charset=utf-8
+-   name: /hall/v1/config/block/userblock/13615291
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+            X-QP-AppId: '13001'
+            X-QP-AppVersion: 1.0.49
+            X-QP-ClientType: '2'
+            X-QP-Gid: '10592879'
+            X-QP-Nonce: 4f34a829-2575-4ce5-ccf6-5986dcad6992
+            X-QP-OS: android
+            X-QP-OSVersion: unknow
+            X-QP-ResVersion: 1.10.15
+            X-QP-Signature: 3b60e0efb8c3ef1a88376ad7525f241c
+            X-QP-Timestamp: '1585637036'
+            X-QP-Token: 236aec9f-4319-52af-a413-bf8641a0f31a
+            X-QP-UserId: '13615291'
+        method: GET
+        params:
+            gameId: '13001'
+        url: https://apitest.xianlaigame.com/hall/v1/config/block/userblock/13615291
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - text/plain; charset=utf-8
+-   name: /xlhy-activity-external/hallMarquee/getContent
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+            X-QP-AppId: '13001'
+            X-QP-AppVersion: 1.0.49
+            X-QP-ClientType: '2'
+            X-QP-Gid: '10592879'
+            X-QP-Nonce: c3114ce3-12b3-4b96-cbfe-dc4ecc2ca71c
+            X-QP-OS: android
+            X-QP-OSVersion: unknow
+            X-QP-ResVersion: 1.10.15
+            X-QP-Signature: 83e4f74ea182823066f910b979fe6bac
+            X-QP-Timestamp: '1585637036'
+            X-QP-Token: 236aec9f-4319-52af-a413-bf8641a0f31a
+            X-QP-UserId: '13615291'
+        method: GET
+        params:
+            gameId: '13001'
+            serverCode: shanxi2_db
+            userId: '13615291'
+            userIp: nil
+        url: http://120.76.194.200:7180/xlhy-activity-external/hallMarquee/getContent
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=UTF-8
+    -   eq:
+        - content.hallMarqueeContent
+        - 文明上网，远离赌博。

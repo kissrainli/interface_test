@@ -1,0 +1,184 @@
+config:
+    name: testcase description
+    base_url: https://api.100daishu.com
+    variables:
+        mobile: '13552616475'
+        password: '616475'
+teststeps:
+-   name: /wxapi/user/login  # 登录账户
+    request:
+        data:
+            code: 071VwOTu1xi3Fe0h87Xu18qVTu1VwOTU
+            mobile: $mobile
+            password: $password
+            type: '2'
+        headers:
+            Content-Type: application/x-www-form-urlencoded
+            User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15
+                (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.5(0x17000523)
+                NetType/WIFI Language/zh_CN
+        method: POST
+        url: /wxapi/user/login
+    extract:
+        token: content.data.token
+        user_id: content.data.userId
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - 成功
+-   name: /wxapi/changeclass/havechangeclass
+    request:
+        headers:
+            Access-Control-Request-Headers: authorization
+            Access-Control-Request-Method: GET
+            User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15
+                (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.5(0x17000523)
+                NetType/WIFI Language/zh_CN
+        method: OPTIONS
+        url: /wxapi/changeclass/havechangeclass
+    validate:
+    -   eq:
+        - status_code
+        - 204
+-   name: /wxapi/user/personcenter
+    request:
+        headers:
+            Access-Control-Request-Headers: authorization
+            Access-Control-Request-Method: POST
+            User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15
+                (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.5(0x17000523)
+                NetType/WIFI Language/zh_CN
+        method: OPTIONS
+        url: /wxapi/user/personcenter
+    validate:
+    -   eq:
+        - status_code
+        - 204
+-   name: /wxapi/user/getstu
+    request:
+        headers:
+            Access-Control-Request-Headers: authorization
+            Access-Control-Request-Method: GET
+            User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15
+                (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.5(0x17000523)
+                NetType/WIFI Language/zh_CN
+        method: OPTIONS
+        url: /wxapi/user/getstu
+    validate:
+    -   eq:
+        - status_code
+        - 204
+-   name: /wxapi/changeclass/havechangeclass
+    request:
+        headers:
+            Authorization: Bearer $token
+            User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15
+                (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.5(0x17000523)
+                NetType/WIFI Language/zh_CN
+        method: GET
+        url: /wxapi/changeclass/havechangeclass
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - 成功
+-   name: /wxapi/user/getstu
+    request:
+        headers:
+            Authorization: Bearer $token
+            User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15
+                (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.5(0x17000523)
+                NetType/WIFI Language/zh_CN
+        method: GET
+        url: /wxapi/user/getstu
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - 成功
+-   name: /wxapi/user/personcenter
+    request:
+        data:
+            userId: $user_id
+        headers:
+            Authorization: Bearer $token
+            Content-Type: application/x-www-form-urlencoded
+            User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15
+                (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.5(0x17000523)
+                NetType/WIFI Language/zh_CN
+        method: POST
+        url: /wxapi/user/personcenter
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - success
+-   name: /wxapi/user/logout
+    request:
+        headers:
+            Access-Control-Request-Headers: authorization
+            Access-Control-Request-Method: GET
+            User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15
+                (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.5(0x17000523)
+                NetType/WIFI Language/zh_CN
+        method: OPTIONS
+        url: /wxapi/user/logout
+    validate:
+    -   eq:
+        - status_code
+        - 204
+-   name: /wxapi/user/logout  # 退出账户
+    request:
+        headers:
+            Authorization: Bearer $token
+            User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15
+                (KHTML, like Gecko) Mobile/15E148 MicroMessenger/7.0.5(0x17000523)
+                NetType/WIFI Language/zh_CN
+        method: GET
+        url: /wxapi/user/logout
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - 成功

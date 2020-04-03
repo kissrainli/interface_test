@@ -1,0 +1,383 @@
+config:
+    name: testcase description
+    variables:
+        mobile: '17600545569'
+        password: '545569'
+teststeps:
+-   name: /teacher/user/login #登陆页面
+    request:
+        data:
+            mobile: $mobile
+            password: $password
+        headers:
+            Content-Type: application/x-www-form-urlencoded;charset=UTF-8
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
+        method: POST
+        url: https://api-test.100daishu.com/teacher/user/login
+    extract:
+        token: content.data.token
+        teaId: content.data.teaId
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - success
+-   name: /teacher/calendar/list
+    request:
+        headers:
+            Access-Control-Request-Headers: authorization
+            Access-Control-Request-Method: POST
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
+        method: OPTIONS
+        url: https://api-test.100daishu.com/teacher/calendar/list
+    validate:
+    -   eq:
+        - status_code
+        - 204
+-   name: /teacher/calendar/list #日历列表
+    request:
+        data:
+            date_time: ''
+        headers:
+            Authorization: Bearer $token
+            Content-Type: application/x-www-form-urlencoded;charset=UTF-8
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
+        method: POST
+        url: https://api-test.100daishu.com/teacher/calendar/list
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - 成功
+-   name: /teacher/calendar/lessonslist #次课列表
+    request:
+        headers:
+            Access-Control-Request-Headers: authorization
+            Access-Control-Request-Method: POST
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
+        method: OPTIONS
+        url: https://api-test.100daishu.com/teacher/calendar/lessonslist
+    validate:
+    -   eq:
+        - status_code
+        - 204
+-   name: /teacher/calendar/lessonslist
+    request:
+        data:
+            date_time: '2019-08-19'
+        headers:
+            Authorization: Bearer $token
+            Content-Type: application/x-www-form-urlencoded;charset=UTF-8
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
+        method: POST
+        url: https://api-test.100daishu.com/teacher/calendar/lessonslist
+    extract:
+        lessonId: content.data.list.0.lectureId
+        claId: content.data.list.0.claId
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - 成功
+-   name: /teacher/classroom/enterroom  #进入教室
+    request:
+        headers:
+            Access-Control-Request-Headers: authorization
+            Access-Control-Request-Method: POST
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
+        method: OPTIONS
+        url: https://api-test.100daishu.com/teacher/classroom/enterroom
+    validate:
+    -   eq:
+        - status_code
+        - 204
+-   name: /teacher/classroom/enterroom
+    request:
+        data:
+            lessonId: $lessonId
+            teaId: $teaId
+        headers:
+            Authorization: Bearer $token
+            Content-Type: application/x-www-form-urlencoded;charset=UTF-8
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
+        method: POST
+        url: https://api-test.100daishu.com/teacher/classroom/enterroom
+    extract:
+        roomId: content.data.roomId
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - success
+-   name: /inClassController/workOrder/message/total/4070
+    request:
+        headers:
+            Access-Control-Request-Headers: authorization,deviceid,studentid,system,userid,ver
+            Access-Control-Request-Method: GET
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
+        method: OPTIONS
+        url: https://business-test.100daishu.com/inClassController/workOrder/message/total/4070
+    validate:
+    -   eq:
+        - status_code
+        - 200
+-   name: /teacher/user/userinfo    #获取老师信息
+    request:
+        headers:
+            Access-Control-Request-Headers: authorization,deviceid,studentid,system,userid,ver
+            Access-Control-Request-Method: POST
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
+        method: OPTIONS
+        url: https://api-test.100daishu.com/teacher/user/userinfo
+    validate:
+    -   eq:
+        - status_code
+        - 204
+-   name: /teacher/user/userinfo
+    request:
+        data:
+            lessonId: $lessonId
+        headers:
+            Authorization: Bearer $token
+            Content-Type: application/x-www-form-urlencoded
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
+            deviceId: 926735da-3134-1652-12ad-6e01a0dbd910
+            studentId: '81'
+            system: Mac
+            userId: anonymous
+            ver: 1.1.0.0b8
+        method: POST
+        url: https://api-test.100daishu.com/teacher/user/userinfo
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - success
+-   name: /student/lesson/studentlist   #获取学生列表
+    request:
+        data:
+            lessonId: $lessonId
+        headers:
+            Authorization: Bearer $token
+            Content-Type: application/x-www-form-urlencoded
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
+            deviceId: 926735da-3134-1652-12ad-6e01a0dbd910
+            studentId: '81'
+            system: Mac
+            userId: anonymous
+            ver: 1.1.0.0b8
+        method: POST
+        url: https://api-test.100daishu.com/student/lesson/studentlist
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - success
+
+-   name: /inClassController/insertInClassWorkerOrder   #老师端求助
+    request:
+        headers:
+            Access-Control-Request-Headers: authorization,deviceid,studentid,system,userid,ver
+            Access-Control-Request-Method: POST
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
+        method: OPTIONS
+        url: https://business-test.100daishu.com/inClassController/insertInClassWorkerOrder
+    validate:
+    -   eq:
+        - status_code
+        - 200
+-   name: /inClassController/insertInClassWorkerOrder
+    request:
+        data:
+            connectionPhone: '17600545569'
+            createrId: '81'
+            deviceId: 926735da-3134-1652-12ad-6e01a0dbd910
+            deviceType: '1'
+            lessonId: $lessonId
+            messageFrom: '4'
+            roomId: $roomId
+            system: Mac
+            teacherDescription: 测试
+            teacherId: $teaId
+            teacherQuestionType: '2'
+            teacherQuestionUrl: ''
+            userRoleId: '0'
+        headers:
+            Authorization: Bearer $token
+            Content-Type: application/x-www-form-urlencoded
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
+            deviceId: 926735da-3134-1652-12ad-6e01a0dbd910
+            studentId: '81'
+            system: Mac
+            userId: anonymous
+            ver: 1.1.0.0b8
+        method: POST
+        url: https://business-test.100daishu.com/inClassController/insertInClassWorkerOrder
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=UTF-8
+    -   eq:
+        - content.dsPlatName
+        - business
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - 正常
+    -   eq:
+        - content.data
+        - null
+
+-   name: /teacher/lessons/attend   #开始上课
+    request:
+        headers:
+            Access-Control-Request-Headers: authorization,deviceid,studentid,system,userid,ver
+            Access-Control-Request-Method: POST
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
+        method: OPTIONS
+        url: https://api-test.100daishu.com/teacher/lessons/attend
+    validate:
+    -   eq:
+        - status_code
+        - 204
+-   name: /teacher/lessons/attend
+    request:
+        data:
+            claId: $claId
+            lessonId: $lessonId
+        headers:
+            Authorization: Bearer $token
+            Content-Type: application/x-www-form-urlencoded
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
+            deviceId: 926735da-3134-1652-12ad-6e01a0dbd910
+            studentId: '81'
+            system: Mac
+            userId: anonymous
+            ver: 1.1.0.0b8
+        method: POST
+        url: https://api-test.100daishu.com/teacher/lessons/attend
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - 成功
+
+-   name: /teacher/lessons/finish   #下课
+    request:
+        headers:
+            Access-Control-Request-Headers: authorization,deviceid,studentid,system,userid,ver
+            Access-Control-Request-Method: POST
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
+        method: OPTIONS
+        url: https://api-test.100daishu.com/teacher/lessons/finish
+    validate:
+    -   eq:
+        - status_code
+        - 204
+-   name: /teacher/lessons/finish
+    request:
+        data:
+            claId: $claId
+            lessonId: $lessonId
+        headers:
+            Authorization: Bearer $token
+            Content-Type: application/x-www-form-urlencoded
+            User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
+            deviceId: 926735da-3134-1652-12ad-6e01a0dbd910
+            studentId: '81'
+            system: Mac
+            userId: anonymous
+            ver: 1.1.0.0b8
+        method: POST
+        url: https://api-test.100daishu.com/teacher/lessons/finish
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json; charset=UTF-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - 成功

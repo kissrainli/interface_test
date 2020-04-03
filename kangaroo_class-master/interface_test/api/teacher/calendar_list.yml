@@ -1,0 +1,24 @@
+name: /teacher/calendar/list
+request:
+    data:
+        date_time: ''
+    headers:
+        Authorization: Bearer $token
+        Content-Type: application/x-www-form-urlencoded;charset=UTF-8
+        User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36
+            (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36
+    method: POST
+    url: /teacher/calendar/list
+validate:
+-   eq:
+    - status_code
+    - 200
+-   eq:
+    - headers.Content-Type
+    - application/json; charset=UTF-8
+-   eq:
+    - content.code
+    - 0
+-   eq:
+    - content.msg
+    - 成功

@@ -1,0 +1,141 @@
+config:
+    name: testcase description
+    variables: {}
+teststeps:
+-   name: /guide/v1/user/path
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+            X-QP-AppId: '13001'
+            X-QP-AppVersion: 1.0.49
+            X-QP-ClientType: '2'
+            X-QP-Gid: '10592879'
+            X-QP-Nonce: eb065532-2c2a-4b83-cbc1-b05647d261d8
+            X-QP-OS: android
+            X-QP-OSVersion: unknow
+            X-QP-ResVersion: 1.10.15
+            X-QP-Signature: d8bc4f7c8417b36536ee3a59a708c3cd
+            X-QP-Timestamp: '1585637035'
+            X-QP-Token: 236aec9f-4319-52af-a413-bf8641a0f31a
+            X-QP-UserId: '13615291'
+        method: GET
+        params:
+            appId: '13001'
+            path: ''
+            userId: '13615291'
+        url: http://120.78.193.223:15000/guide/v1/user/path
+    validate:
+    -   eq:
+        - status_code
+        - 502
+    -   eq:
+        - headers.Content-Type
+        - text/html; charset=UTF-8
+-   name: /item/v1/goods/guide
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+            X-QP-AppId: '13001'
+            X-QP-AppVersion: 1.0.49
+            X-QP-ClientType: '2'
+            X-QP-Gid: '10592879'
+            X-QP-Nonce: 9a224e8f-fc56-4e37-ce00-c714d3930862
+            X-QP-OS: android
+            X-QP-OSVersion: unknow
+            X-QP-ResVersion: 1.10.15
+            X-QP-Signature: e05b80b1a010597298e2bd4a4a2d3313
+            X-QP-Timestamp: '1585637035'
+            X-QP-Token: 236aec9f-4319-52af-a413-bf8641a0f31a
+            X-QP-UserId: '13615291'
+        method: GET
+        url: https://apitest.xianlaigame.com/item/v1/goods/guide
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - text/plain; charset=utf-8
+-   name: /xlhy-activity-external/noticeguide/get
+    request:
+        headers:
+            Content-Type: application/json
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+        json:
+            appId: 13001
+            city: ''
+            clientIp: 222.129.17.238
+            clientVersion: 1.0.49
+            gid: 10592879
+            packageName: com.ixianlai.shanmahjong
+            province: ''
+            systemVersion: a6.0
+            userId: 13615291
+            userRoleType: 1
+            userSex: 0
+            xsdkVersion: 2.3.3
+        method: POST
+        url: http://120.76.194.200:7480/xlhy-activity-external/noticeguide/get
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=utf-8
+    -   eq:
+        - content.code
+        - 0
+-   name: /guide/v1/user/path
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+            X-QP-AppId: '13001'
+            X-QP-AppVersion: 1.0.49
+            X-QP-ClientType: '2'
+            X-QP-Gid: '10592879'
+            X-QP-Nonce: eb065532-2c2a-4b83-cbc1-b05647d261d8
+            X-QP-OS: android
+            X-QP-OSVersion: unknow
+            X-QP-ResVersion: 1.10.15
+            X-QP-Signature: d8bc4f7c8417b36536ee3a59a708c3cd
+            X-QP-Timestamp: '1585637035'
+            X-QP-Token: 236aec9f-4319-52af-a413-bf8641a0f31a
+            X-QP-UserId: '13615291'
+        method: GET
+        params:
+            appId: '13001'
+            path: ''
+            userId: '13615291'
+        url: http://120.78.193.223:15000/guide/v1/user/path
+    validate:
+    -   eq:
+        - status_code
+        - 502
+    -   eq:
+        - headers.Content-Type
+        - text/html; charset=UTF-8
+-   name: /xlhy-activity-external/freered/check
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+        method: GET
+        params:
+            gameId: '13001'
+            sign: e19b25ddb8907d7dbecd736272b80552
+            unionId: '666'
+            userId: '13615291'
+        url: http://120.76.194.200:7480/xlhy-activity-external/freered/check
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json;charset=utf-8
+    -   eq:
+        - content.code
+        - 0
+    -   eq:
+        - content.msg
+        - SUCCESS

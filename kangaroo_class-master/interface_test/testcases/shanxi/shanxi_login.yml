@@ -1,0 +1,43 @@
+config:
+    name: testcase description
+    variables:
+        open_id: ${ENV(u_name)}
+
+teststeps:
+-   name: /uc/v1/login/local
+    request:
+        headers:
+            User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Redmi Note 4X MIUI/V10.1.2.0.MBFCNFI)
+            X-QP-AppId: '13001'
+            X-QP-AppVersion: 1.0.49
+            X-QP-ClientType: '2'
+            X-QP-Gid: '0'
+            X-QP-Nonce: f985262f-eccf-406c-c096-0e9a9cfea1bf
+            X-QP-OS: android
+            X-QP-OSVersion: unknow
+            X-QP-ResVersion: 1.10.15
+            X-QP-Signature: 950670b495b4bde716d924ac0bfed487
+            X-QP-Timestamp: '1585725376'
+        method: GET
+        params:
+            androidId: 866414032824670|89860316472011034973|18:F0:E4:42:E7:18
+            appId: '13001'
+            chId: ''
+            deviceId: 866414032824670|89860316472011034973|18:F0:E4:42:E7:18
+            deviceType: '0'
+            imei: '866414032824670'
+            mac: 18:F0:E4:42:E7:18
+            openId: '$open_id'
+            subChId: ''
+        url: https://apilocaltest.xianlaigame.com/uc/v1/login/local
+
+    extract:
+        token: content.data.accessToken
+
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - text/plain; charset=utf-8
